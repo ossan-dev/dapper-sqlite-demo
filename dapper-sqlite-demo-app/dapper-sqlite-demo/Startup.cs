@@ -1,3 +1,5 @@
+using dapper_sqlite_demo.Database;
+using dapper_sqlite_demo.RequestResponseLogMaster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,10 +28,14 @@ namespace dapper_sqlite_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton(new DatabaseConfig {Name = Configuration["DatabaseName"] });
+            services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
+            services.AddSingleton<IRequestResponseLogProvider, RequestResponseLogProvider>();
+            services.AddSingleton<IRequestResponseLogRepo, RequestResponseLogRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -46,6 +52,8 @@ namespace dapper_sqlite_demo
             {
                 endpoints.MapControllers();
             });
+
+            serviceProvider.GetService<IDatabaseBootstrap>().Setup();
         }
     }
 }

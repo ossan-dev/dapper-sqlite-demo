@@ -3,6 +3,7 @@ using dapper_sqlite_demo.Database;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,8 +20,11 @@ namespace dapper_sqlite_demo.RequestResponseLogMaster
         public async Task Create(RequestResponseLog log)
         {
             using var connection = new SqliteConnection(_databaseConfig.Name);
-            await connection.ExecuteAsync(@"INSERT INTO [dbo].[request_response_log]
-                                               ([insert_date]
+            var parameters = new { Id = log.Id, InsertDate = DateTime.Now, HttpVerb = log.HttpVerb, User = log.User, RequestHost = log.RequestHost, RequestPath = log.RequestPath, RequestQueryString = log.RequestQueryString, RequestBody = log.RequestBody, ResponseStatusCode = log.ResponseStatusCode, ResponseBody = log.ResponseBody };
+            var sql = @"INSERT INTO [request_response_log]
+                                               (
+                                                [id]
+                                               ,[insert_date]
                                                ,[http_verb]
                                                ,[user]
                                                ,[request_host]
@@ -31,15 +35,17 @@ namespace dapper_sqlite_demo.RequestResponseLogMaster
                                                ,[response_body])
                                          VALUES
                                                (
-		                                       @insert_date,
-                                               @http_verb,
-                                               @user, 
-                                               @request_host, 
-                                               @request_path, 
-                                               @request_query_string,
-                                               @request_body,
-                                               @response_status_code, 
-                                               @response_body)", log);
+                                               @Id,
+		                                       @InsertDate,
+                                               @HttpVerb,
+                                               @User, 
+                                               @RequestHost, 
+                                               @RequestPath, 
+                                               @RequestQueryString,
+                                               @RequestBody,
+                                               @ResponseStatusCode, 
+                                               @ResponseBody);";
+            await connection.ExecuteAsync(sql, parameters);
         }
     }
 }

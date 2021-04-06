@@ -30,7 +30,7 @@ namespace dapper_sqlite_demo.RequestResponseLogMaster
                                               ,[request_body]
                                               ,[response_status_code]
                                               ,[response_body]
-                                          FROM [dbo].[request_response_log]");
+                                          FROM [request_response_log]");
         }
     }
 }
