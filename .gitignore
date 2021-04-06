@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/dapper-sqlite-demo-app/.vs/dapper-sqlite-demo-app/v16/.suo
+/dapper-sqlite-demo-app/dapper-sqlite-demo/obj
+/dapper-sqlite-demo-app/dapper-sqlite-demo/Properties
+/dapper-sqlite-demo-app/dapper-sqlite-demo/dapper-sqlite-demo.csproj.user

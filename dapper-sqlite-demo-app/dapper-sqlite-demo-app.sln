@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dapper-sqlite-demo", "dapper-sqlite-demo\dapper-sqlite-demo.csproj", "{9ADA3620-C5C2-410F-8FDC-54105956A562}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1BE2A60-29E1-4A33-B116-5070E9EF1194}
+	EndGlobalSection
+EndGlobal
