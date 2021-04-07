@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace dapper_sqlite_demo_tests
 {
-    public class InMemoryDatabaseBootstrap : DatabaseConnectionFactoryInMemory, IDatabaseBootstrap
+    public class InMemoryDatabaseBootstrap
     {
-        public InMemoryDatabaseBootstrap(DatabaseConfig databaseConfig) : base(databaseConfig)
+        public InMemoryDatabaseBootstrap() : base()
         {
 
         }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace dapper_sqlite_demo.Database
 {
-    public interface IDatabaseBootstrap : IDatabaseConnectionFactory
+    public interface IDbBootstrap
     {        
-        Task SetupAsync(IDbConnection connection);
+        Task SetupAsync();
     }
 }

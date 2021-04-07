@@ -7,9 +7,9 @@ using System.Text;
 
 namespace dapper_sqlite_demo_tests
 {
-    public class DatabaseConnectionFactoryInMemory : IDatabaseConnectionFactory
+    public class DatabaseConnectionFactoryInMemory
     {
-        public DatabaseConnectionFactoryInMemory(DatabaseConfig databaseConfig)
+        public DatabaseConnectionFactoryInMemory()
         {
 
         }

@@ -1,15 +1,17 @@
 using dapper_sqlite_demo.Database;
-using dapper_sqlite_demo.RequestResponseLogMaster;
+using dapper_sqlite_demo.LogMaster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,11 +30,10 @@ namespace dapper_sqlite_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton(new DatabaseConfig {Name = Configuration["DatabaseName"] });
-            services.AddSingleton<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
-            services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
-            services.AddSingleton<IRequestResponseLogProvider, RequestResponseLogProvider>();
-            services.AddSingleton<IRequestResponseLogRepo, RequestResponseLogRepo>();
+            services.AddScoped<IDbConnection>((sp) => new SqliteConnection(Configuration["DatabaseName"]));
+            services.AddScoped<IDbBootstrap, DbBootstrap>();
+            services.AddScoped<ILogProvider, LogProvider>();
+            services.AddScoped<ILogRepo, LogRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +55,7 @@ namespace dapper_sqlite_demo
                 endpoints.MapControllers();
             });
 
-            serviceProvider.GetService<IDatabaseBootstrap>().SetupAsync(serviceProvider.GetService<IDatabaseConnectionFactory>().GetConnection());
+            serviceProvider.GetService<IDbBootstrap>().SetupAsync();
         }
     }
 }

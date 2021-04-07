@@ -3,24 +3,24 @@ using dapper_sqlite_demo.Database;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dapper_sqlite_demo.RequestResponseLogMaster
+namespace dapper_sqlite_demo.LogMaster
 {
-    public class RequestResponseLogProvider : IRequestResponseLogProvider
+    public class LogProvider : ILogProvider
     {
-        private readonly DatabaseConfig _databaseConfig;
+        private readonly IDbConnection _connection;
 
-        public RequestResponseLogProvider(DatabaseConfig databaseConfig)
+        public LogProvider(IDbConnection connection)
         {
-            _databaseConfig = databaseConfig;
+            _connection = connection;
         }
 
-        public async Task<IEnumerable<RequestResponseLog>> Get()
+        public async Task<IEnumerable<Log>> Get()
         {
-            using var connection = new SqliteConnection(_databaseConfig.Name);
-            return await connection.QueryAsync<RequestResponseLog>(@"SELECT [id]
+            return await _connection.QueryAsync<Log>(@"SELECT [id]
                                               ,[insert_date]
                                               ,[http_verb]
                                               ,[user]

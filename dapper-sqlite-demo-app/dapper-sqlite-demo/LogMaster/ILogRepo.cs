@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dapper_sqlite_demo.Database
+namespace dapper_sqlite_demo.LogMaster
 {
-    public class DatabaseConfig
+    public interface ILogRepo
     {
-        public string Name { get; set; }
+        Task Create(Log log);
     }
 }

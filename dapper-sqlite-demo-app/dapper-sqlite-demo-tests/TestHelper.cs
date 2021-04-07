@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using dapper_sqlite_demo.RequestResponseLogMaster;
+using dapper_sqlite_demo.LogMaster;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ namespace dapper_sqlite_demo_tests
 {
     public static class TestHelper
     {
-        public static async Task SeedDataInDbAsync(IDbConnection connection, IEnumerable<RequestResponseLog> logs) 
+        public static async Task SeedDataInDbAsync(IDbConnection connection, IEnumerable<Log> logs) 
         {
             foreach (var log in logs)
             {

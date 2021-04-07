@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 
 namespace dapper_sqlite_demo.Database
 {
-    public class DatabaseBootstrap : DatabaseConnectionFactory, IDatabaseBootstrap
+    public class DbBootstrap : IDbBootstrap
     {
-        public DatabaseBootstrap(DatabaseConfig databaseConfig) : base(databaseConfig)
-        {
+        private readonly IDbConnection _connection;        
 
+        public DbBootstrap(IDbConnection connection)
+        {
+            _connection = connection;
         }
 
-        public async Task SetupAsync(IDbConnection connection)
+        public async Task SetupAsync()
         {
-            var table = await connection.QueryAsync<string>("SELECT name FROM sqlite_master WHERE type='table' AND name = 'request_response_log';");
+            var table = await _connection.QueryAsync<string>("SELECT name FROM sqlite_master WHERE type='table' AND name = 'request_response_log';");
             var tableName = table.FirstOrDefault();
             if (!string.IsNullOrEmpty(tableName) && tableName == "request_response_log")
                 return;
-            await connection.ExecuteAsync(@"
+            await _connection.ExecuteAsync(@"
                                 CREATE TABLE [request_response_log](
 	                                [id] [int] IDENTITY(1,1) NOT NULL,
 	                                [insert_date] [datetime] NOT NULL,

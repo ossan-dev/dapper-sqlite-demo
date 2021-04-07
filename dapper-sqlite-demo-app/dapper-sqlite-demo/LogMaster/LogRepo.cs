@@ -7,20 +7,19 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dapper_sqlite_demo.RequestResponseLogMaster
+namespace dapper_sqlite_demo.LogMaster
 {
-    public class RequestResponseLogRepo : IRequestResponseLogRepo
+    public class LogRepo : ILogRepo
     {
-        private readonly DatabaseConfig _databaseConfig;
+        private readonly IDbConnection _connection;
 
-        public RequestResponseLogRepo(DatabaseConfig databaseConfig)
+        public LogRepo(IDbConnection connection)
         {
-            _databaseConfig = databaseConfig;
+            _connection = connection;
         }
-        public async Task Create(RequestResponseLog log)
+        public async Task Create(Log log)
         {
-            using var connection = new SqliteConnection(_databaseConfig.Name);
-            var parameters = new { Id = log.Id, InsertDate = DateTime.Now, HttpVerb = log.HttpVerb, User = log.User, RequestHost = log.RequestHost, RequestPath = log.RequestPath, RequestQueryString = log.RequestQueryString, RequestBody = log.RequestBody, ResponseStatusCode = log.ResponseStatusCode, ResponseBody = log.ResponseBody };
+            var parameters = new { log.Id, InsertDate = DateTime.Now, log.HttpVerb, log.User, log.RequestHost, log.RequestPath, log.RequestQueryString, log.RequestBody, log.ResponseStatusCode, log.ResponseBody };
             var sql = @"INSERT INTO [request_response_log]
                                                (
                                                 [id]
@@ -45,7 +44,7 @@ namespace dapper_sqlite_demo.RequestResponseLogMaster
                                                @RequestBody,
                                                @ResponseStatusCode, 
                                                @ResponseBody);";
-            await connection.ExecuteAsync(sql, parameters);
+            await _connection.ExecuteAsync(sql, parameters);
         }
     }
 }

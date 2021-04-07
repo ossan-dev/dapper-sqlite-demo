@@ -1,4 +1,4 @@
-﻿using dapper_sqlite_demo.RequestResponseLogMaster;
+﻿using dapper_sqlite_demo.LogMaster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,12 +10,12 @@ namespace dapper_sqlite_demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RequestResponseLogController : ControllerBase
+    public class LogController : ControllerBase
     {
-        private readonly IRequestResponseLogProvider _logProvider;
-        private readonly IRequestResponseLogRepo _logRepo;
+        private readonly ILogProvider _logProvider;
+        private readonly ILogRepo _logRepo;
 
-        public RequestResponseLogController(IRequestResponseLogProvider logProvider, IRequestResponseLogRepo logRepo)
+        public LogController(ILogProvider logProvider, ILogRepo logRepo)
         {
             _logProvider = logProvider;
             _logRepo = logRepo;
@@ -23,14 +23,14 @@ namespace dapper_sqlite_demo.Controllers
 
         // GET api/requestResponseLog
         [HttpGet]
-        public async Task<IEnumerable<RequestResponseLog>> Get()
+        public async Task<IEnumerable<Log>> Get()
         {
             return await _logProvider.Get();
         }
 
         // POST api/requestResponseLog
         [HttpPost]
-        public async Task Post([FromBody] RequestResponseLog log)
+        public async Task Post([FromBody] Log log)
         {
             await _logRepo.Create(log);
         }

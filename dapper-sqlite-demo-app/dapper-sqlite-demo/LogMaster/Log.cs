@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace dapper_sqlite_demo.RequestResponseLogMaster
+namespace dapper_sqlite_demo.LogMaster
 {
-    public class RequestResponseLog
+    public class Log
     {
         public int Id { get; set; }
         [JsonPropertyName("insert_date")]
