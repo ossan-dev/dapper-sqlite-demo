@@ -43,5 +43,22 @@ namespace dapper_sqlite_demo_tests
                 await connection.ExecuteAsync(sql, parameters);
             }
         }
+
+        public static async Task<IEnumerable<Log>> GetLogsFromDbAsync(IDbConnection connection)
+        {
+            var logs = await connection.QueryAsync<Log>(@"SELECT [Id]
+                                              ,[InsertDate]
+                                              ,[HttpVerb]
+                                              ,[User]
+                                              ,[RequestHost]
+                                              ,[RequestPath]
+                                              ,[RequestQueryString]
+                                              ,[RequestBody]
+                                              ,[ResponseStatusCode]
+                                              ,[ResponseBody]
+                                          FROM [log]");
+
+            return logs;
+        }
     }
 }
