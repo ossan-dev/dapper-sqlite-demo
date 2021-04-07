@@ -19,12 +19,12 @@ namespace dapper_sqlite_demo.Database
 
         public async Task SetupAsync()
         {
-            var table = await _connection.QueryAsync<string>("SELECT name FROM sqlite_master WHERE type='table' AND name = 'request_response_log';");
+            var table = await _connection.QueryAsync<string>("SELECT name FROM sqlite_master WHERE type='table' AND name = 'log';");
             var tableName = table.FirstOrDefault();
-            if (!string.IsNullOrEmpty(tableName) && tableName == "request_response_log")
+            if (!string.IsNullOrEmpty(tableName) && tableName == "log")
                 return;
             await _connection.ExecuteAsync(@"
-                                CREATE TABLE [request_response_log](
+                                CREATE TABLE [log](
 	                                [id] [int] IDENTITY(1,1) NOT NULL,
 	                                [insert_date] [datetime] NOT NULL,
 	                                [http_verb] text NOT NULL,
