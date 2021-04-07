@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dapper-sqlite-demo", "dapper-sqlite-demo\dapper-sqlite-demo.csproj", "{9ADA3620-C5C2-410F-8FDC-54105956A562}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dapper-sqlite-demo", "dapper-sqlite-demo\dapper-sqlite-demo.csproj", "{9ADA3620-C5C2-410F-8FDC-54105956A562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dapper-sqlite-demo-tests", "dapper-sqlite-demo-tests\dapper-sqlite-demo-tests.csproj", "{D8C5144A-D335-4762-8AC6-5AA18A85061E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ADA3620-C5C2-410F-8FDC-54105956A562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C5144A-D335-4762-8AC6-5AA18A85061E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C5144A-D335-4762-8AC6-5AA18A85061E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C5144A-D335-4762-8AC6-5AA18A85061E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C5144A-D335-4762-8AC6-5AA18A85061E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
