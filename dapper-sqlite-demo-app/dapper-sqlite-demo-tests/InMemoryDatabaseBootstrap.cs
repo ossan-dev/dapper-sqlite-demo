@@ -1,26 +1,24 @@
 ﻿using Dapper;
+using dapper_sqlite_demo.Database;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace dapper_sqlite_demo.Database
+namespace dapper_sqlite_demo_tests
 {
-    public class DatabaseBootstrap : DatabaseConnectionFactory, IDatabaseBootstrap
+    public class InMemoryDatabaseBootstrap : DatabaseConnectionFactoryInMemory, IDatabaseBootstrap
     {
-        public DatabaseBootstrap(DatabaseConfig databaseConfig) : base(databaseConfig)
+        public InMemoryDatabaseBootstrap(DatabaseConfig databaseConfig) : base(databaseConfig)
         {
 
         }
 
         public async Task SetupAsync(IDbConnection connection)
         {
-            var table = await connection.QueryAsync<string>("SELECT name FROM sqlite_master WHERE type='table' AND name = 'request_response_log';");
-            var tableName = table.FirstOrDefault();
-            if (!string.IsNullOrEmpty(tableName) && tableName == "request_response_log")
-                return;
+            connection.Open();
             await connection.ExecuteAsync(@"
                                 CREATE TABLE [request_response_log](
 	                                [id] [int] IDENTITY(1,1) NOT NULL,

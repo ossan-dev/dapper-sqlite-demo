@@ -29,6 +29,7 @@ namespace dapper_sqlite_demo
         {
             services.AddControllers();
             services.AddSingleton(new DatabaseConfig {Name = Configuration["DatabaseName"] });
+            services.AddSingleton<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
             services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
             services.AddSingleton<IRequestResponseLogProvider, RequestResponseLogProvider>();
             services.AddSingleton<IRequestResponseLogRepo, RequestResponseLogRepo>();
@@ -53,7 +54,7 @@ namespace dapper_sqlite_demo
                 endpoints.MapControllers();
             });
 
-            serviceProvider.GetService<IDatabaseBootstrap>().Setup();
+            serviceProvider.GetService<IDatabaseBootstrap>().SetupAsync(serviceProvider.GetService<IDatabaseConnectionFactory>().GetConnection());
         }
     }
 }
