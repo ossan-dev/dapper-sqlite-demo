@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dapper_sqlite_demo.LogMaster
 {
     public class Log
-    {
+   {
         public int Id { get; set; }
         public DateTime InsertDate { get; set; }
         public string HttpVerb { get; set; }
