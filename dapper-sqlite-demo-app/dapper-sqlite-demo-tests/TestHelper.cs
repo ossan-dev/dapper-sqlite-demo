@@ -15,7 +15,7 @@ namespace dapper_sqlite_demo_tests
             foreach (var log in logs)
             {
                 var parameters = new { Id = log.Id, InsertDate = DateTime.Now, HttpVerb = log.HttpVerb, User = log.User, RequestHost = log.RequestHost, RequestPath = log.RequestPath, RequestQueryString = log.RequestQueryString, RequestBody = log.RequestBody, ResponseStatusCode = log.ResponseStatusCode, ResponseBody = log.ResponseBody };
-                var sql = @"INSERT INTO [request_response_log]
+                var sql = @"INSERT INTO [log]
                                                (
                                                 [id]
                                                ,[insert_date]
