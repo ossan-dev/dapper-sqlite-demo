@@ -75,9 +75,60 @@ namespace dapper_sqlite_demo_tests
         }
 
         [Fact]
-        public async Task LogRepo_Must_Fail_If_Any_Fields_NULL() 
+        public async Task LogRepo_Must_Fail_If_Any_Fields_Is_NULL() 
         {
+            // arrange
+            var log = new Log
+            {
+                Id = 2,
+                HttpVerb = "GET",
+                InsertDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
+                RequestBody = "myRequestBody",
+                RequestHost = "myRequestHost",
+                RequestPath = "myRequestPath",
+                RequestQueryString = "myRequestQueryString",
+                ResponseBody = "myResponseBody",
+                ResponseStatusCode = 200,
+                User = null
+            };
 
+            IDbBootstrap dbBootstrap = new DbBootstrap(_connection);
+            await dbBootstrap.SetupAsync();
+
+            // act
+            ILogRepo logRepo = new LogRepo(_connection);
+            Func<Task> func = async () => await logRepo.Create(log);
+
+            // assert
+            await Assert.ThrowsAsync<SqliteException>(func);
+        }
+
+        [Fact]
+        public async Task LogRepo_Must_Fail_If_Any_Fields_Is_Missing()
+        {
+            // arrange
+            var log = new Log
+            {
+                Id = 2,
+                HttpVerb = "GET",
+                InsertDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
+                RequestBody = "myRequestBody",
+                RequestHost = "myRequestHost",
+                RequestPath = "myRequestPath",
+                RequestQueryString = "myRequestQueryString",
+                ResponseBody = "myResponseBody",
+                ResponseStatusCode = 200
+            };
+
+            IDbBootstrap dbBootstrap = new DbBootstrap(_connection);
+            await dbBootstrap.SetupAsync();
+
+            // act
+            ILogRepo logRepo = new LogRepo(_connection);
+            Func<Task> func = async () => await logRepo.Create(log);
+
+            // assert
+            await Assert.ThrowsAsync<SqliteException>(func);
         }
     }
 }
