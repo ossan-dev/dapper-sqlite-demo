@@ -1,8 +1,16 @@
 version: '3.4'
 
 services:
-  dapper-sqlite-demo:
-    image: ${DOCKER_REGISTRY-}dappersqlitedemo
-    build:
-      context: .
-      dockerfile: dapper-sqlite-demo/Dockerfile
+    log-db-host:
+        image: "mcr.microsoft.com/mssql/server:2017-latest"
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=abcd1234ABCD?
+
+    dapper-sqlite-demo:
+        image: ${DOCKER_REGISTRY-}dappersqlitedemo
+        build:
+            context: .
+            dockerfile: dapper-sqlite-demo/Dockerfile
+        depends_on:
+            - log-db-host
