@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dapper-sqlite-demo:
+    image: ${DOCKER_REGISTRY-}dappersqlitedemo
+    build:
+      context: .
+      dockerfile: dapper-sqlite-demo/Dockerfile
