@@ -32,6 +32,9 @@ namespace dapper_sqlite_demo.Migrations
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("NewField")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RequestBody")
                         .HasColumnType("nvarchar(max)");
 

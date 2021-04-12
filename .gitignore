@@ -18,3 +18,4 @@
 /dapper-sqlite-demo-app/obj
 /dapper-sqlite-demo-app/docker-compose.dcproj
 /dapper-sqlite-demo-app/docker-compose.override.yml
+/dapper-sqlite-demo-app/.vscode
