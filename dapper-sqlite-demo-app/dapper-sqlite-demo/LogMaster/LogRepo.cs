@@ -19,11 +19,9 @@ namespace dapper_sqlite_demo.LogMaster
         }
         public async Task Create(Log log)
         {
-            var parameters = new { log.Id, log.InsertDate, log.HttpVerb, log.User, log.RequestHost, log.RequestPath, log.RequestQueryString, log.RequestBody, log.ResponseStatusCode, log.ResponseBody };
+            var parameters = new { log.InsertDate, log.HttpVerb, log.User, log.RequestHost, log.RequestPath, log.RequestQueryString, log.RequestBody, log.ResponseStatusCode, log.ResponseBody };
             var sql = @"INSERT INTO [log]
-                            (
-                             [Id]
-                            ,[InsertDate]
+                            ([InsertDate]
                             ,[HttpVerb]
                             ,[User]
                             ,[RequestHost]
@@ -35,7 +33,6 @@ namespace dapper_sqlite_demo.LogMaster
                             )
                         VALUES
                             (
-                            @Id,
 		                    @InsertDate,
                             @HttpVerb,
                             @User, 
