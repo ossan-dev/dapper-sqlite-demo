@@ -14,3 +14,10 @@
 /dapper-sqlite-demo-app/dapper-sqlite-demo-tests/dapper-sqlite-demo-tests.csproj.user
 /dapper-sqlite-demo-app/.vs/dapper-sqlite-demo-app/v16/TestStore/0
 /dapper-sqlite-demo-app/dapper-sqlite-demo/log.sqlite
+/dapper-sqlite-demo-app/.vscode
+/dapper-sqlite-demo-app/bin/Debug
+/dapper-sqlite-demo-app/dapper-sqlite-demo/Docs/Readme.md
+/dapper-sqlite-demo-app/dapper-sqlite-demo/dockerfile
+/dapper-sqlite-demo-app/obj
+/dapper-sqlite-demo-app/docker-compose.override.yml
+/dapper-sqlite-demo-app/docker-compose.dcproj
