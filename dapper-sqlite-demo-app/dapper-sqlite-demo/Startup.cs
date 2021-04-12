@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +31,8 @@ namespace dapper_sqlite_demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IDbConnection>((sp) => new SqliteConnection(Configuration["DatabaseName"]));
+            //services.AddScoped<IDbConnection>((sp) => new SqliteConnection(Configuration["DatabaseName"])); // SQLite implementation
+            services.AddScoped<IDbConnection>((sp) => new SqlConnection(Configuration.GetConnectionString("Default")));
             services.AddScoped<IDbBootstrap, DbBootstrap>();
             services.AddScoped<ILogProvider, LogProvider>();
             services.AddScoped<ILogRepo, LogRepo>();

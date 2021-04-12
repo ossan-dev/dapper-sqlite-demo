@@ -3,15 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>dapper_sqlite_demo</RootNamespace>
+    <UserSecretsId>a18eabbe-d906-4fd4-a4be-cad8aa7a7eaf</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Docs\" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
 
